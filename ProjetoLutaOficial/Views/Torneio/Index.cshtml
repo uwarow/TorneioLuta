@@ -1,0 +1,66 @@
+﻿@model List<Lutador>
+
+@{
+    ViewData["Title"] = "Selecione para a luta!";
+}
+
+@{
+
+    <br />
+    <h2 style="color:snow; text-align:center">Torneio de luta</h2>
+    <br />
+    <br />
+    <form asp-action="PegaSelecionados">
+        <input type="submit" class="btn btn-light" style="margin-left:60px;" value="Iniciar" />
+        <br />
+        <br />
+        <div class="container-fluid">
+            @{
+                int contador = 0;
+                bool finalizou = false;
+
+                while (finalizou == false)
+                {
+                    <div class="row" style="margin-left:30px;">
+                        @for (int i = contador; i < Model.Count; i++)
+                        {
+                            <div class="col">
+                                <div class="card" style="margin-bottom:30px;">
+                                    <input asp-for="@Model[i].Selecionado" class="form-check-input" />
+
+                                    <h5>@Model[i].Nome</h5>
+
+                                    <p><strong>Idade: </strong>@Model[i].Idade</p>
+                                    <p><strong>Artes marciais: </strong>@Model[i].ArtesMarciais</p>
+                                    <p><strong>Total de lutas: </strong>@Model[i].Lutas</p>
+                                    <p><strong>Derrotas: </strong>@Model[i].Derrotas</p>
+                                    <p><strong>Vitórias: </strong>@Model[i].Vitorias</p>
+                                </div>
+                            </div>
+
+                            contador++;
+
+                            if (contador == Model.Count - 1)
+                            {
+                                finalizou = true;
+                            }
+                        }
+                    </div>
+
+                }
+
+            }
+        </div>
+    </form>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+}
+
+
+
